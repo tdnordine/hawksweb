@@ -1,0 +1,6 @@
+<div>
+ <div class="newsstory" *ngFor="let story of stories" >
+   <h2>{{story.title}}</h2>
+   <div [innerHtml]="story.text"></div>
+ </div>
+</div>

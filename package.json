@@ -1,6 +1,6 @@
 {
   "name": "hawks",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -22,7 +22,16 @@
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "@ng-bootstrap/ng-bootstrap": "^2.0.0",
+    "bootstrap": "^4.1.2",
+    "classlist.js": "^1.1.20150312",
+    "jquery": "3.3.1",
+    "jw-bootstrap-switch-ng2": "1.0.10",
+    "ng2-nouislider": "1.7.11",
+    "nouislider": "^11.1.0",
+    "popper.js": "^1.14.3",
+    "web-animations-js": "^2.3.1"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^6.0.3",

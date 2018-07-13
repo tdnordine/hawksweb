@@ -1,0 +1,27 @@
+<div class="wrapper">
+    <div class="page-header page-header-small section-dark" style="background-image: url('assets/img/roster.png')">
+        <div class="filter"></div>
+        <div class="content-center">
+            <div class="container">
+                <div class="motto">
+                  <h1 class="title-uppercase text-center">Roster</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+      <div class="content-center">
+        <div class="container">
+          <h2 class="title-uppercase text-center">{{CurrentYear}} Roster</h2>
+            <div *ngFor="let player of players | sorter: 'Number'" class="row" >
+                <div class="col-2 border">
+                    <!--<img src="assets/img/hawks-medallion.png" class="rounded-circle roster_picture" /> -->
+                    <div class="float-right" ><h3 class="text-primary">{{player.JerseyNumber1}}</h3></div>
+                </div>
+                <div class="col-4 border"><h3 class="text-primary">{{player.FirstName}} {{player.LastName}}</h3></div>
+                <div class="col-2 border"><h3 class="text-primary">{{player.Position}}</h3></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
