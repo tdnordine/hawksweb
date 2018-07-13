@@ -24,7 +24,7 @@ export class NewsService {
 
   public getNewsItems() {
 
-    return this.http.get<NewsRef[]>('assets/data/newsstories.json')
+    return this.http.get<NewsRef[]>('assets/data/newsstories.txt')
       .pipe(
         mergeMap(items => items),
         concatMap(storyref => this.http.get(
@@ -32,14 +32,5 @@ export class NewsService {
             (newsref, data) => new NewsItem(newsref.title, data)),
         toArray());
 
-//    this.http.get<any[]>('assets/data/newsstories.json').subscribe(stories => {
-//      return Observable.forkJoin(stories.map(story => {
-//        return this.http.get<string>(story.uri);
-//      })).subscribe(results => {
-//          return results.map( function (result, index) {
-//            return new NewsItem(stories[index].title, result);
-//          });
-//      });
-//    });
   }
 }
