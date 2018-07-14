@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { mergeMap, concatMap, toArray } from 'rxjs/operators';
+import { mergeMap, concatMap, toArray, skip, take } from 'rxjs/operators';
 
 export interface NewsRef {
   title: string;
@@ -22,11 +22,15 @@ export class NewsService {
 
   constructor(public http: HttpClient) { }
 
-  public getNewsItems() {
+  public getNewsItems(count?: number, page?: number) {
+    const localCount = count ? count : 8;
+    const localPage = page ? page : 1;
 
     return this.http.get<NewsRef[]>('assets/data/newsstories.txt')
       .pipe(
         mergeMap(items => items),
+        skip(localCount * (localPage - 1)),
+        take(localCount),
         concatMap(storyref => this.http.get(
           'assets/data/' + storyref.uri, {responseType: 'text'}),
             (newsref, data) => new NewsItem(newsref.title, data)),

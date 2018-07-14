@@ -1,16 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'sorter'
+  name: 'jerseysorter'
 })
 export class SortPipe implements PipeTransform {
   transform(array: Array<string>, args: string): Array<string> {
-    array.sort((a: any, b: any) => {
-    if ( a[args] < b[args] ) {
+    array.sort((a: string, b: string) => {
+      const aint = parseInt(a[args], 10);
+      const bint = parseInt(b[args], 10);
+
+    if ( aint < bint ) {
       return -1;
-    }else if ( a[args] > b[args] ) {
+    } else if ( aint > bint ) {
       return 1;
-    }else {
+    } else {
       return 0;
     }
     });

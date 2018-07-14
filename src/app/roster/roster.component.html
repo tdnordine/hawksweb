@@ -13,7 +13,7 @@
       <div class="content-center">
         <div class="container">
           <h2 class="title-uppercase text-center">{{CurrentYear}} Roster</h2>
-            <div *ngFor="let player of players | sorter: 'Number'" class="row" >
+            <div *ngFor="let player of players | jerseysorter: 'JerseyNumber1'" class="row" >
                 <div class="col-2 border">
                     <!--<img src="assets/img/hawks-medallion.png" class="rounded-circle roster_picture" /> -->
                     <div class="float-right" ><h3 class="text-primary">{{player.JerseyNumber1}}</h3></div>

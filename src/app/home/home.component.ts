@@ -20,9 +20,9 @@ export class HomeComponent implements OnInit {
     constructor(public newsservice: NewsService) { }
 
     ngOnInit() {
-        this.newsservice.getNewsItems().subscribe(
+        this.newsservice.getNewsItems(3).subscribe(
             data => {
-              this.stories = data.slice(0, 3);
+              this.stories = data;
             }
           );
     }
