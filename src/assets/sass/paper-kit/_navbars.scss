@@ -134,7 +134,7 @@
         }
         .brand{
             font-size: 18px;
-            color: #FFFFFF;
+            color: rgb(255, 255, 255);
             line-height: 20px;
             float: left;
             margin-left: 10px;
@@ -172,7 +172,7 @@
 
     .navbar-nav{
         .nav-item .nav-link:not(.btn){
-            color: $white-color;
+            color: $dark-gray;
             border-color: $white-color;
         }
         .active .nav-link
@@ -181,7 +181,7 @@
         .nav-item .nav-link:hover,
         .nav-item .nav-link:focus{
             background-color: transparent;
-            color: $white-color;
+            color: $dark-gray;
             @include opacity(1);
         }
         .nav .nav-item a.btn:hover{
@@ -399,7 +399,7 @@
 
     .navbar[class*="bg-"] & .navbar-toggler-bar,
     .navbar.navbar-transparent & .navbar-toggler-bar{
-        background: #fff;
+        background: rgb(255, 255, 255);
     }
 
     .navbar-toggler-bar{
