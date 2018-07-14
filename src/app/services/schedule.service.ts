@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export interface IScheduledGame {
-  Description: String,
-  GameDate: String,
-GameId: String,
-HomeTeamId: String,
-HomeTeamName: String,
-Location: String,
-Title: String,
-VisitingTeamId: String,
-VisitingTeamName: String,
-NumberOfInnings: String
+  Description: string;
+  GameDate: string;
+  GameId: string;
+  HomeTeamId: string;
+  HomeTeamName: string;
+  Location: string;
+  Title: string;
+  VisitingTeamId: string;
+  VisitingTeamName: string;
+  NumberOfInnings: string;
 }
 
 
