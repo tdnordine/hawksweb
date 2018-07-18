@@ -9,3 +9,15 @@
 .newsstory h2 {
     text-align: center;
 }
+
+.byline {
+    font-style: italic;
+}
+
+.date {
+    font-style: bold;
+}
+
+.storytext {
+    font-size: 1.2em;
+}

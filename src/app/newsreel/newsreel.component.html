@@ -1,6 +1,7 @@
 <div>
  <div class="newsstory" *ngFor="let story of stories" >
    <h2>{{story.title}}</h2>
-   <div [innerHtml]="story.text"></div>
+   <div><span class="date">{{story.newsdate}}</span> - <span class="byline">{{story.byline}}</span></div>
+   <div class="storytext" [innerHtml]="story.article"></div>
  </div>
 </div>

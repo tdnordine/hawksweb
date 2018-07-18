@@ -1,6 +1,0 @@
-[
-    {
-        "title": "Hawks fall to Elko 16-4.",
-        "uri": "7-12-18-Elko-Game.html"
-    }
-]
