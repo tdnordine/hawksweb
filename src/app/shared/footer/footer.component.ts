@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SponsorService, Sponsor } from '../../services/sponsor.service';
 
 @Component({
     selector: 'app-footer',
@@ -6,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-    test : Date = new Date();
+    now: Date = new Date();
+    sponsors: Sponsor[];
 
-    constructor() { }
+    constructor(public sponsorservice: SponsorService) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.sponsorservice.getSponsors().subscribe(
+            data => {
+              this.sponsors = data;
+            }
+          );
+    }
 }

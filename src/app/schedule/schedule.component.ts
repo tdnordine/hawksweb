@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScheduleService, IScheduledGame } from 'app/services/schedule.service';
+import { ScheduleService, IScheduledGame } from '../services/schedule.service';
 
 interface IGameDisplayItem {
   Date: String;
