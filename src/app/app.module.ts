@@ -29,6 +29,7 @@ import { ScheduleService } from './services/schedule.service';
 import { RosterService } from './services/roster.service';
 import { SortPipe } from './utilities/sort.pipe';
 import { LiveComponent } from './live/live.component';
+import { BoardmemberComponent } from './boardmember/boardmember.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { LiveComponent } from './live/live.component';
     NewsreelComponent,
     HomeComponent,
     SortPipe,
-    LiveComponent
+    LiveComponent,
+    BoardmemberComponent
   ],
   imports: [
     BrowserModule,
