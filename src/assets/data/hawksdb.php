@@ -59,3 +59,31 @@ class HawksDB
 
 }
 
+function output_one($result)
+{
+    if ($result)
+    {
+        echo json_encode($result->fetch_object());
+    }        
+}
+
+function output_one_image($result)
+{
+    if ($result) {
+        $output = $result->fetch_object();
+        header('Content-Type: $output->mimetype');
+        echo $output->image;
+    }       
+}
+
+function output_many($result)
+{
+    $output = array();
+    if ($result) {
+        while($row = $result->fetch_object()) {
+            $output[] = $row;
+        }
+    }
+    header('Content-Type: application/json');
+    echo json_encode($output);        
+}

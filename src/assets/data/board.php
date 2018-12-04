@@ -5,7 +5,7 @@ $usertable = "boardmembers";
 $db = new HawksDB();
 
 $query = "SELECT id, title, name, emailaddr, termexpiration, image, shorttitle FROM $usertable WHERE current = 1";
-$callback = array($db, "output_many");
+$callback = "output_many";
 
 $db->DoSql($callback, $query);
 ?>
