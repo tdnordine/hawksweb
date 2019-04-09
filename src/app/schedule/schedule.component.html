@@ -17,10 +17,25 @@
             <h2 class="text-center">Season Pass</h2>
             <p>Season Passes are also available for $40 and are good for all league and non-league home games except the playoffs.</p>
           </div>
-          <div class="container">
+        <div class="container">
+          <h2 class="title-uppercase text-center">{{CurrentYear}} Schedule</h2>
+            <div class="row">
+                <div class="col-3"><h4>Date</h4></div>
+                <div class="col-3"><h4>Location</h4></div>
+                <div class="col-3"><h4>Opponent</h4></div>
+            </div>
+            <div *ngFor="let game of games" class="row" >
+                <div class="col-3"><span class="text-primary">{{game.Date | date : 'medium'}}</span></div>
+                <div class="col-3"><span class="text-primary">{{game.Location}}</span></div>
+                <div class="col-3"><span class="text-primary">{{game.Opponent}}</span></div>
+            </div>
+        </div>
+<!--          <div class="container">
               <h2 class="text-center">2018 Game Schedule</h2>
               <iframe src="https://calendar.google.com/calendar/embed?src=nd1sbvfr3nocf0g6jf0l6f224k%40group.calendar.google.com&ctz=America%2FChicago" class="fit" style="border: 0" width="1080" height="600" frameborder="0" scrolling="no"></iframe>
-          </div>
+              <div *ngFor="let game of games" >
+              </div>
+          </div> -->
       </div>
     </div>
 </div>

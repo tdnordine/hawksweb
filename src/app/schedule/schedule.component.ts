@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ScheduleService, IScheduledGame } from '../services/schedule.service';
+import { CurrentdateService } from '../services/currentdate.service';
 
 interface IGameDisplayItem {
   Date: String;
@@ -15,9 +16,12 @@ interface IGameDisplayItem {
 })
 export class ScheduleComponent implements OnInit {
 
-  private games: IGameDisplayItem[] = [];
+  public games: IGameDisplayItem[] = [];
+  public CurrentYear: string;
 
-  constructor(public scheduleservice: ScheduleService) { }
+  constructor(public scheduleservice: ScheduleService, public date_service: CurrentdateService) {
+    this.CurrentYear = date_service.getCurrentYear();
+   }
 
   ngOnInit() {
     this.scheduleservice.getScheduleItems().subscribe(

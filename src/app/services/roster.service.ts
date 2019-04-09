@@ -10,6 +10,11 @@ export interface IRosterPlayer {
   PlayerId: string;
   Position: string;
   BattingLineupPosition: number;
+  Bats: string;
+  Throws: string;
+  Height: string;
+  Weight: string;
+  Hometown: string;
 }
 
 @Injectable()
