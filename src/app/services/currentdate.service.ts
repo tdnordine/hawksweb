@@ -3,11 +3,16 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CurrentdateService {
 
-  constructor() { }
+  private today: Date;
+
+  constructor() {
+    this.today = new Date();
+   }
 
   public getCurrentYear() {
-    return '2019';
+    return this.today.getFullYear().toString();
   }
 }
