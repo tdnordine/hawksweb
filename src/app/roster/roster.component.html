@@ -14,6 +14,7 @@
         <div class="container">
           <h2 class="title-uppercase text-center">{{CurrentYear}} Roster</h2>
             <div class="row">
+                <div class="col-1 border">Picture</div>
                 <div class="col-1 border">Number</div>
                 <div class="col-3 border">Name</div>
                 <div class="col-1 border">T/B</div>
@@ -22,13 +23,15 @@
                 <div class="col-2 border">High School</div> -->
             </div>
             <div *ngFor="let player of players | jerseysorter: 'JerseyNumber1'" class="row" >
-                <div class="col-1 border">
-                    <!--<img src="assets/img/hawks-medallion.png" class="rounded-circle roster_picture" /> -->
-                    <div class="float-right" ><h4 class="text-primary">{{player.JerseyNumber1}}</h4></div>
-                </div>
-                <div class="col-3 border"><h4 class="text-primary">{{player.FirstName}} {{player.LastName}}</h4></div>
-                <div class="col-1 border"><h4 class="text-primary">{{player.Throws}}/{{player.Bats}}</h4></div>
-                <div class="col-4 border"><h4 class="text-primary">{{player.Hometown}}</h4></div>
+              <div class="roster_picture_cell col-1 border">
+                <img src="{{player.ImageURI}}" class="roster_picture" />
+              </div>
+              <div class="col-1 border">
+                <div class="float-right" ><h4 class="text-primary">{{player.JerseyNumber1}}</h4></div>
+              </div>
+              <div class="col-3 border"><h4 class="text-primary">{{player.FirstName}} {{player.LastName}}</h4></div>
+              <div class="col-1 border"><h4 class="text-primary">{{player.Throws}}/{{player.Bats}}</h4></div>
+              <div class="col-4 border"><h4 class="text-primary">{{player.Hometown}}</h4></div>
  <!--               <div class="col-2 border"><h4 class="text-primary">{{player.College}}</h4></div>
                 <div class="col-2 border"><h4 class="text-primary">{{player.HighSchool}}</h4></div> -->
             </div>

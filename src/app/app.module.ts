@@ -56,7 +56,7 @@ import { BoardmemberComponent } from './boardmember/boardmember.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot(),
+    NgbModule,
     FormsModule,
     RouterModule,
     AppRoutingModule,

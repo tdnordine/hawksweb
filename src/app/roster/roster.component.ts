@@ -12,6 +12,7 @@ export class RosterComponent implements OnInit {
   public CurrentYear: string;
   public players: IRosterPlayer[] = [];
 
+
   constructor(public roster_service: RosterService, public date_service: CurrentdateService) {
     this.CurrentYear = date_service.getCurrentYear();
    }
@@ -19,6 +20,9 @@ export class RosterComponent implements OnInit {
   ngOnInit() {
     this.roster_service.getRosterItems().subscribe(
       roster => {
+        roster.forEach( (player, idx, arry) => {
+          player.ImageURI = "assets/img/players/" + player.FirstName + player.LastName + ".jpg";
+        } )
         this.players = roster;
       }
     );

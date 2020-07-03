@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject, Renderer, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
 
     constructor(
-        private renderer: Renderer,
+        private renderer: Renderer2,
         private router: Router,
         @Inject(DOCUMENT, ) private document: any,
         private element: ElementRef,
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
             }
             this.navbar.sidebarClose();
         });
-        this.renderer.listenGlobal('window', 'scroll', (event) => {
+        this.renderer.listen('window', 'scroll', (event) => {
             const number = window.scrollY;
             if (number > 150 || window.pageYOffset > 150) {
                 // add logic

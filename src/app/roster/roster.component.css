@@ -1,5 +1,11 @@
 .roster_picture {
     height: 100px;
-    width: 100px;
-    padding: 5px;
+    width: 80px;
+}
+
+.roster_picture_cell {
+    padding-left: 10px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }

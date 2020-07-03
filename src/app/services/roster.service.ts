@@ -15,6 +15,7 @@ export interface IRosterPlayer {
   Height: string;
   Weight: string;
   Hometown: string;
+  ImageURI: string;
 }
 
 @Injectable()
@@ -31,4 +32,5 @@ export class RosterService {
         })
       });
   }
+
 }
