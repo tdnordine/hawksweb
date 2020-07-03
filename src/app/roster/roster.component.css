@@ -1,11 +1,24 @@
-.roster_picture {
-    height: 100px;
-    width: 80px;
+.player_card {
+    border-bottom: 1px solid black;
+    padding: 6px;
+    margin: 12px;
+    width: 400px;
 }
 
-.roster_picture_cell {
-    padding-left: 10px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+.player_important {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: darkgreen;
+}
+
+.player_detail {
+    font-size: 1.0em;
+    font-weight: 300
+}
+
+img.player_image {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    z-index: 100;
 }

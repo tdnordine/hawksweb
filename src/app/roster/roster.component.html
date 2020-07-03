@@ -13,14 +13,12 @@
       <div class="content-center">
         <div class="container">
           <h2 class="title-uppercase text-center">{{CurrentYear}} Roster</h2>
-            <div class="row">
+<!--            <div class="row">
                 <div class="col-1 border">Picture</div>
                 <div class="col-1 border">Number</div>
                 <div class="col-3 border">Name</div>
                 <div class="col-1 border">T/B</div>
                 <div class="col-4 border">Hometown</div>
-<!--                <div class="col-2 border">College</div>
-                <div class="col-2 border">High School</div> -->
             </div>
             <div *ngFor="let player of players | jerseysorter: 'JerseyNumber1'" class="row" >
               <div class="roster_picture_cell col-1 border">
@@ -32,9 +30,18 @@
               <div class="col-3 border"><h4 class="text-primary">{{player.FirstName}} {{player.LastName}}</h4></div>
               <div class="col-1 border"><h4 class="text-primary">{{player.Throws}}/{{player.Bats}}</h4></div>
               <div class="col-4 border"><h4 class="text-primary">{{player.Hometown}}</h4></div>
- <!--               <div class="col-2 border"><h4 class="text-primary">{{player.College}}</h4></div>
-                <div class="col-2 border"><h4 class="text-primary">{{player.HighSchool}}</h4></div> -->
-            </div>
+            </div> -->
+            <div *ngFor="let player of players | jerseysorter: 'JerseyNumber1'" class="player_card" >
+              <div>
+                <div class="col-8 col-sm-6 col-md-3">
+                  <div class="player_important">{{player.FirstName}} {{player.LastName}}</div>
+                  <div class="player_important">#{{player.JerseyNumber1}}</div>
+                  <div class="player_detail">{{player.Throws}}/{{player.Bats}}</div>
+                  <div class="player_detail">{{player.Hometown}}</div>
+                </div>
+                <img class="player_image" src="{{player.ImageURI}}" />
+              </div>
+            </div>            
         </div>
       </div>
     </div>
