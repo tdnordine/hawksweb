@@ -1,8 +1,7 @@
 .player_card {
-    border-bottom: 1px solid black;
+    border: 1px solid black;
     padding: 6px;
     margin: 12px;
-    width: 400px;
 }
 
 .player_important {
@@ -19,6 +18,15 @@
 img.player_image {
     height: 100%;
     width: 100%;
-    object-fit: contain;
-    z-index: 100;
+
+}
+
+.card-columns {
+    column-count: 2;
+}
+
+@media screen and (max-width: 995px) {
+    .card-columns {
+        column-count: 1;
+    }
 }

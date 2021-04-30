@@ -25,7 +25,7 @@ export class RosterService {
 
   public getRosterItems() {
     return this.http.post<IRosterPlayer[]>(
-      'http://api.scoremonster.com/roster/7c8475ea-149e-4140-8ba0-763729d94dd9',
+      'https://api.scoremonster.com/roster/7c8475ea-149e-4140-8ba0-763729d94dd9',
       'password=tori1reno&userName=tdnordine@gmail.com', {
         headers: new HttpHeaders({
           'Content-Type': 'application/x-www-form-urlencoded'

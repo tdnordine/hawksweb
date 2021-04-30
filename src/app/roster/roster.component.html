@@ -31,17 +31,15 @@
               <div class="col-1 border"><h4 class="text-primary">{{player.Throws}}/{{player.Bats}}</h4></div>
               <div class="col-4 border"><h4 class="text-primary">{{player.Hometown}}</h4></div>
             </div> -->
-            <div *ngFor="let player of players | jerseysorter: 'JerseyNumber1'" class="player_card" >
-              <div>
-                <div class="col-8 col-sm-6 col-md-3">
+            <div class="card-columns">
+            <div *ngFor="let player of players | jerseysorter: 'JerseyNumber1'" class="player_card card" >
+                  <img class="player_image" src="{{player.ImageURI}}" />
                   <div class="player_important">{{player.FirstName}} {{player.LastName}}</div>
                   <div class="player_important">#{{player.JerseyNumber1}}</div>
                   <div class="player_detail">{{player.Throws}}/{{player.Bats}}</div>
                   <div class="player_detail">{{player.Hometown}}</div>
-                </div>
-                <img class="player_image" src="{{player.ImageURI}}" />
               </div>
-            </div>            
+          </div>
         </div>
       </div>
     </div>
