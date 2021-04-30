@@ -4,10 +4,10 @@ class HawksDB
 {
     //Variables for connecting to your database.
     //These variable values come from your hosting account.
-    private $hostname = "hawksnet.db.8301406.7ff.hostedresource.net";
-    private $username = "tdnordine";
-    private $dbname = "hawksnet";
-    private $password = "Hastings1@";
+    private $hostname = "localhost";
+    private $username = "hastlowf_tdnordine";
+    private $dbname = "hastlowf_hawksnet";
+    private $password = "Hawks1Forever.";
 
     function __construct()
     {

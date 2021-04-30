@@ -22,7 +22,7 @@ export class ScheduleService {
 
   public getScheduleItems() {
     return this.http.post<IScheduledGame[]>(
-      'http://api.scoremonster.com/game',
+      'https://api.scoremonster.com/game',
       'password=tori1reno&userName=tdnordine@gmail.com', {
         headers: new HttpHeaders({
           'Content-Type': 'application/x-www-form-urlencoded'
