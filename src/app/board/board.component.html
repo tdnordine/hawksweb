@@ -12,8 +12,9 @@
     <div class="main">
       <div class="content-center">
         <div class="container">
-            <div class="boardmember-container">
-                <div *ngFor="let boardmember of boardmembers" >
+            <h1>columns: {{columns}}</h1>
+            <div class="card-columns">
+                <div *ngFor="let boardmember of boardmembers" class="card">
                     <app-boardmember [member]="boardmember"></app-boardmember>
                 </div>
             </div>

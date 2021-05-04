@@ -1,3 +1,13 @@
 .boardmember-container {
     margin-top: 15px
 }
+
+.card-columns {
+    column-count: 2;
+}
+
+@media screen and (max-width: 995px) {
+    .card-columns {
+        column-count: 1;
+    }
+}

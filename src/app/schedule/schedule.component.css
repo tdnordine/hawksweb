@@ -1,3 +1,9 @@
 .fit {
+    width: 95%;
+    height: 600px;
     max-width: 99%;
+}
+
+.game_row {
+    padding-bottom: 15px;
 }

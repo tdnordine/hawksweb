@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BoardmemberComponent } from 'app/boardmember/boardmember.component';
+import { removeSummaryDuplicates } from '@angular/compiler';
 
 export interface BoardMember {
   id: string;
@@ -20,9 +21,10 @@ export class BoardService {
 
   constructor(public http: HttpClient) { }
 
-  public getBoardMembers() {
-    return this.http.get<BoardMember[]>('assets/data/board.php');
-/*
+  public getBoardMembers() : Observable<BoardMember[]>
+  {
+    //return this.http.get<BoardMember[]>('assets/data/board.php');
+
     return new Observable<BoardMember[]>((observer) => {
 
       observer.next([
@@ -68,6 +70,6 @@ export class BoardService {
 
       return {unsubscribe() {}};
     });
-*/
+
   }
 }
