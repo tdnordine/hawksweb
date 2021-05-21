@@ -14,6 +14,7 @@ import { JoinComponent} from './join/join.component';
 import { NewsComponent} from './news/news.component';
 import { StatsComponent} from './stats/stats.component';
 import { VetsparkComponent} from './vetspark/vetspark.component';
+import { ConstructionComponent} from './construction/construction.component';
 import { StoreComponent} from './store/store.component';
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: 'news',             component: NewsComponent },
 //    { path: 'stats',             component: StatsComponent },
     { path: 'vetspark',             component: VetsparkComponent },
+    { path: 'construction',             component: ConstructionComponent },
 //    { path: 'store',             component: StoreComponent },
     { path: 'home', redirectTo: '', pathMatch: 'full' }
 ];

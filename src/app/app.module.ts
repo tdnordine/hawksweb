@@ -30,6 +30,7 @@ import { RosterService } from './services/roster.service';
 import { SortPipe } from './utilities/sort.pipe';
 import { LiveComponent } from './live/live.component';
 import { BoardmemberComponent } from './boardmember/boardmember.component';
+import { ConstructionComponent } from './construction/construction.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { BoardmemberComponent } from './boardmember/boardmember.component';
     HomeComponent,
     SortPipe,
     LiveComponent,
-    BoardmemberComponent
+    BoardmemberComponent,
+    ConstructionComponent
   ],
   imports: [
     BrowserModule,
