@@ -31,6 +31,7 @@ import { SortPipe } from './utilities/sort.pipe';
 import { LiveComponent } from './live/live.component';
 import { BoardmemberComponent } from './boardmember/boardmember.component';
 import { ConstructionComponent } from './construction/construction.component';
+import { IscoreScoreboardComponent } from './iscore-scoreboard/iscore-scoreboard.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { ConstructionComponent } from './construction/construction.component';
     SortPipe,
     LiveComponent,
     BoardmemberComponent,
-    ConstructionComponent
+    ConstructionComponent,
+    IscoreScoreboardComponent
   ],
   imports: [
     BrowserModule,

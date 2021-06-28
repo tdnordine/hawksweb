@@ -1,0 +1,404 @@
+
+<!-- saved from url=(0094)https://sb.iscoresports.com/scoreboard.php?g=5&n=110&sbid=661637c37bdd52851fd85ffa022c9a04&e=y 
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style>@media print {#ghostery-tracker-tally {display:none !important}}</style></head><body>if(!window.jQuery)
+{
+var head = document.getElementsByTagName("head")[0] || document.documentElement;
+var script = document.createElement("script");
+script.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js";
+
+// Handle Script loading
+    var script_done = false;
+
+// Attach handlers for all browsers
+script.onload = script.onreadystatechange = function() {
+
+//$.noConflict(true);
+
+    if ( !script_done &amp;&amp; (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") ) 
+    {
+        script_done = true;
+                
+		$(document).ready(function() 
+		{
+			getData();
+				
+		});
+
+        // Handle memory leak in IE
+        script.onload = script.onreadystatechange = null;
+        if ( head &amp;&amp; script.parentNode ) {
+            head.removeChild( script );
+        }
+    }
+};
+
+// Use insertBefore instead of appendChild  to circumvent an IE6 bug.
+// This arises when a base node is used (#2709 and #4378).
+head.insertBefore( script, head.firstChild );
+}
+else
+{
+		$(document).ready(function() 
+		{
+			getData();
+				
+		});
+
+}
+
+
+
+
+
+var displayCount = "5";
+var elementWidth = 246;
+var elementHeight = 90;
+if(elementHeight&lt;80)
+	elementHeight=80;
+if(elementHeight&gt;110)
+	elementHeight=110;
+
+var widthFix = 0;
+
+var displayHeight = elementHeight-10; //2 for margin 8 for border
+var sport = "";
+function getData()
+{
+	$("#gameCount").html("Loading..");
+
+	$.ajax({
+		context: this,
+		type: "GET", 
+		url: "https://iscoresports.com/scoreboard/sbdata.php", 
+		data: { sport:$("#sportSelector").val(), rand:Math.round(Math.random()*100000), sbid:"661637c37bdd52851fd85ffa022c9a04", nocache:"" },
+		dataType: "jsonp", 
+		success: onDataSuccess,
+		error: onDataFailed
+	});
+}
+
+function onDataSuccess(data)
+{
+	var html = new StringBuilder("");
+	var count = data.length;
+//	for(var i=0;i&lt; count;i++)
+	for(var i=count-1; i&gt;=0; i--)
+	{
+		var gameInfo = data[i];			
+		
+		var dt = new Date();
+		dt.setTime(gameInfo.date*1000)
+
+		gameInfo.date = dateFormat(dt,"m/d/yy h:MM TT");
+		
+		if(gameInfo.gameover)
+			gameInfo.inning="F";
+		else
+		{
+			if(gameInfo.status==null)
+			{
+				gameInfo.inning = "Sch";
+			}
+			else
+			{
+				var arr = gameInfo.status.split(",");
+				if(gameInfo.sport=="baseball")
+				{
+					gameInfo.inning = (arr[4]=="0"?"T":"B")+arr[3]			
+				}
+				else if (gameInfo.sport == "football")
+				{
+					mm = ((parseInt(arr[0]) / 60)+"").split(".")[0];
+					ss = parseInt(arr[0]) % 60;
+					if (ss &lt; 10) ss = "0" + ss;
+// alert("Q" + arr[1] + " " + mm + ":" + ss);
+					gameInfo.inning = "Q" + arr[1] + " " + mm + ":" + ss;
+
+				}
+				else if (gameInfo.sport == "basketball")
+				{
+					mm = ((parseInt(arr[0]) / 60)+"").split(".")[0];
+					ss = parseInt(arr[0]) % 60;
+					if (ss &lt; 10) ss = "0" + ss;
+// alert("Q" + arr[1] + " " + mm + ":" + ss);
+					gameInfo.inning = "P" + arr[3] + " " + mm + ":" + ss;
+				}
+				else if (gameInfo.sport == "soccer")
+				{
+				}
+				else
+				{
+				}
+			}
+		}
+		drawGameScore(gameInfo,html);
+	}
+	drawiScore(html);
+	count++;
+	
+	var htmlStr = "<div id="gamelist_container" style="position:relative;overflow-y:hidden;left:0;top:0;width:&quot;+((elementWidth*displayCount) + 50 - widthFix)+&quot;;height:&quot;+displayHeight+&quot;;background-image:url(https://static.iscorecast.com/iscorecast/baseball_2/images/gamelist_strip.png)">" +
+			"<div id="gamelist_bar" style="position:relative;left:25;top:0;width:&quot;+(elementWidth*displayCount-widthFix)+&quot;;height:&quot;+(displayHeight+20)+&quot;;overflow-x:scroll;overflow-y:hidden;">" + 
+			""+
+			html.toString() +
+			"<table style=""><tbody><tr></tr></tbody></table>" +
+			"</div>" +
+			"<div id="left_arrow" style="cursor:pointer;cursor:hand;position:absolute;left:0;top:0;width:50;height:100%">" +
+			"	<img src="./scoreboard_files/arrow_left.png" style="position:absolute;left:5;top:&quot;+((displayHeight-45)/2)+&quot;;">" +
+			"</div>" +		
+			"<div id="right_arrow" style="cursor:pointer;cursor:hand;position:absolute;right:0;top:0;width:50;height:100%">" +
+			"	<img src="./scoreboard_files/arrow_right.png" style="position:absolute;right:3;top:&quot;+((displayHeight-45)/2)+&quot;;">" +
+			"</div>	" +
+	"</div>";
+	
+	$("#iscore-scoreboard").html(htmlStr);
+	$("#gamelist_bar").scrollLeft(elementWidth*(count-displayCount));
+	
+	displayArrows(count-displayCount,count);
+
+	$("#left_arrow").click(function() 
+	{
+		var current = Math.round($("#gamelist_bar").scrollLeft() / elementWidth) ;
+		current = current - displayCount;
+		if(current&lt;0)
+			current=0;
+		//$("#gamelist_bar").scrollLeft(elementWidth*current);
+		$("#gamelist_bar").animate({scrollLeft: elementWidth*current-widthFix}, 400);
+
+		displayArrows(current,count)
+
+      	return false;
+
+	});
+	$("#right_arrow").click(function() 
+	{
+		var current = Math.round($("#gamelist_bar").scrollLeft() / elementWidth) ;
+		current = current  + displayCount;
+		if(current&gt;count-displayCount)
+			current=count-displayCount;
+		//$("#gamelist_bar").scrollLeft(elementWidth*current);
+		$("#gamelist_bar").animate({scrollLeft: elementWidth*current-widthFix}, 400);
+		
+		displayArrows(current,count)
+		
+      	return false;
+
+	});
+
+}
+
+function onDataFailed()
+{
+
+}
+
+function displayArrows(current,count)
+{
+		if(current&lt;=0)
+		{
+			$("#left_arrow").hide();
+		}
+		else
+		{
+			$("#left_arrow").show();
+		}
+
+		if(current&gt;=count-displayCount)
+		{
+			$("#right_arrow").hide();
+		}
+		else
+		{
+			$("#right_arrow").show();
+		}
+}
+function drawGameScore(gameInfo,html)
+{
+	var url = gameInfo["url"];
+
+	
+	html.append("");
+	html.append(" <a class="iScoreCSSGameHref" href="https://sb.iscoresports.com/%22+url+%22" target="_blank" border="0"><div class="iscoreCSScontent" style="margin:1px;border:4px solid #000;position:relative;cursor:pointer;cursor:hand;top:0;width:&quot;+(elementWidth-14)+&quot;;height:&quot;+(displayHeight-14)+&quot;" url="&quot;+url+&quot;">");
+	html.append("	 <img src="./scoreboard_files/_+gameInfo[_sport_]+_.png" border="0" style="position:absolute;top:3;left:7;width:&quot;+(displayHeight*21/80)+&quot;;height:&quot;+(displayHeight*21/80)+&quot;">");
+	html.append("	 <div class="iscoreCSSgame_date" style="font-size:&quot;+(displayHeight*11/80)+&quot;pt;position:absolute;left:&quot;+(displayHeight*32/80)+&quot;;top:&quot;+(displayHeight*6/80)+&quot;;width:225;height:20;overflow:hidden">" + gameInfo["date"] + "</div>");
+	html.append("	 <div class="iscoreCSSgame_teamname" style="font-size:&quot;+(displayHeight*13/80)+&quot;pt;position:absolute;left:10;top:&quot;+(displayHeight*25/80)+&quot;;width:189;height:&quot;+(displayHeight*22/80)+&quot;;overflow:hidden">"+gameInfo["visitor_nm"]+"</div>");
+	html.append("	 <div class="iscoreCSSgame_teamname" style="font-size:&quot;+(displayHeight*13/80)+&quot;pt;position:absolute;left:10;top:&quot;+(displayHeight*46/80)+&quot;;width:189;height:&quot;+(displayHeight*22/80)+&quot;;overflow:hidden">"+gameInfo["home_nm"]+"</div>");
+	html.append("	 <div class="iscoreCSSgame_score" style="font-size:&quot;+(displayHeight*13/80)+&quot;pt;position:absolute;right:8;top:&quot;+(displayHeight*25/80)+&quot;;width:38;height:&quot;+(displayHeight*22/80)+&quot;;overflow:hidden">"+gameInfo["visitor_score"]+"</div>");
+	html.append("	 <div class="iscoreCSSgame_score" style="font-size:&quot;+(displayHeight*13/80)+&quot;pt;position:absolute;right:8;top:&quot;+(displayHeight*46/80)+&quot;;width:38;height:&quot;+(displayHeight*22/80)+&quot;;overflow:hidden">"+gameInfo["home_score"]+"</div>");
+	html.append("	 <div class="iscoreCSSgame_inning" style="font-size:&quot;+(displayHeight*11/80)+&quot;pt;text-align:right;position:absolute;right:8;top:&quot;+(displayHeight*6/80)+&quot;;width:64;height:&quot;+(displayHeight*22/80)+&quot;;overflow:hidden">"+gameInfo["inning"]+"</div>");
+	html.append(" </div></a>");
+	html.append("");
+
+
+}
+
+function drawiScore(html)
+{
+	html.append("");
+	html.append(" <div class="iscoreCSScontent" style="margin:1px;border:4px solid #000;position:relative;cursor:pointer;cursor:hand;top:0;width:&quot;+(elementWidth-14)+&quot;;height:&quot;+(displayHeight-14)+&quot;" url="https://iscoresports.com" onclick="selectGame(\&quot;https://iscoresports.com\&quot;)">");
+	html.append("	 <img src="./scoreboard_files/iscoresports_100x64.png" border="0" style="position:absolute;top:&quot;+((displayHeight-70)/2)+&quot;;left:4">");
+	html.append("	 <div class="iscoreCSSpromo" style="position:absolute;left:67;top:&quot;+((displayHeight-66)/2)+&quot;;width:189;height:90;overflow:hidden">Score your<br>own games at<br><a href="https://iscoresports.com/" target="_blank">iscoresports.com</a></div>");
+	html.append(" </div>");
+	html.append("");
+
+}
+
+function selectGame(url)
+{
+	window.open(url,"_blank");
+}
+
+
+/*
+ * Date Format 1.2.3
+ * (c) 2007-2009 Steven Levithan <stevenlevithan.com>
+ * MIT license
+ *
+ * Includes enhancements by Scott Trenda <scott.trenda.net>
+ * and Kris Kowal <cixar.com ~kris.kowal="">
+ *
+ * Accepts a date, a mask, or a date and a mask.
+ * Returns a formatted version of the given date.
+ * The date defaults to the current date/time.
+ * The mask defaults to dateFormat.masks.default.
+ */
+
+var dateFormat = function () {
+	var	token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
+		timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
+		timezoneClip = /[^-+\dA-Z]/g,
+		pad = function (val, len) {
+			val = String(val);
+			len = len || 2;
+			while (val.length &lt; len) val = "0" + val;
+			return val;
+		};
+
+	// Regexes and supporting functions are cached through closure
+	return function (date, mask, utc) {
+		var dF = dateFormat;
+
+		// You can't provide utc if you skip other args (use the "UTC:" mask prefix)
+		if (arguments.length == 1 &amp;&amp; Object.prototype.toString.call(date) == "[object String]" &amp;&amp; !/\d/.test(date)) {
+			mask = date;
+			date = undefined;
+		}
+
+		// Passing date through Date applies Date.parse, if necessary
+		date = date ? new Date(date) : new Date;
+		if (isNaN(date)) return;//throw SyntaxError("invalid date");
+
+		mask = String(dF.masks[mask] || mask || dF.masks["default"]);
+
+		// Allow setting the utc argument via the mask
+		if (mask.slice(0, 4) == "UTC:") {
+			mask = mask.slice(4);
+			utc = true;
+		}
+
+		var	_ = utc ? "getUTC" : "get",
+			d = date[_ + "Date"](),
+			D = date[_ + "Day"](),
+			m = date[_ + "Month"](),
+			y = date[_ + "FullYear"](),
+			H = date[_ + "Hours"](),
+			M = date[_ + "Minutes"](),
+			s = date[_ + "Seconds"](),
+			L = date[_ + "Milliseconds"](),
+			o = utc ? 0 : date.getTimezoneOffset(),
+			flags = {
+				d:    d,
+				dd:   pad(d),
+				ddd:  dF.i18n.dayNames[D],
+				dddd: dF.i18n.dayNames[D + 7],
+				m:    m + 1,
+				mm:   pad(m + 1),
+				mmm:  dF.i18n.monthNames[m],
+				mmmm: dF.i18n.monthNames[m + 12],
+				yy:   String(y).slice(2),
+				yyyy: y,
+				h:    H % 12 || 12,
+				hh:   pad(H % 12 || 12),
+				H:    H,
+				HH:   pad(H),
+				M:    M,
+				MM:   pad(M),
+				s:    s,
+				ss:   pad(s),
+				l:    pad(L, 3),
+				L:    pad(L &gt; 99 ? Math.round(L / 10) : L),
+				t:    H &lt; 12 ? "a"  : "p",
+				tt:   H &lt; 12 ? "am" : "pm",
+				T:    H &lt; 12 ? "A"  : "P",
+				TT:   H &lt; 12 ? "AM" : "PM",
+				Z:    utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
+				o:    (o &gt; 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+				S:    ["th", "st", "nd", "rd"][d % 10 &gt; 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10]
+			};
+
+		return mask.replace(token, function ($0) {
+			return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
+		});
+	};
+}();
+
+// Some common format strings
+dateFormat.masks = {
+	"default":      "ddd mmm dd yyyy HH:MM:ss",
+	shortDate:      "m/d/yy",
+	mediumDate:     "mmm d, yyyy",
+	longDate:       "mmmm d, yyyy",
+	fullDate:       "dddd, mmmm d, yyyy",
+	shortTime:      "h:MM TT",
+	mediumTime:     "h:MM:ss TT",
+	longTime:       "h:MM:ss TT Z",
+	isoDate:        "yyyy-mm-dd",
+	isoTime:        "HH:MM:ss",
+	isoDateTime:    "yyyy-mm-dd'T'HH:MM:ss",
+	isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
+};
+
+// Internationalization strings
+dateFormat.i18n = {
+	dayNames: [
+		"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
+		"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+	],
+	monthNames: [
+		"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+		"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+	]
+};
+
+// For convenience...
+Date.prototype.format = function (mask, utc) {
+	return dateFormat(this, mask, utc);
+};
+
+function StringBuilder(value)
+{
+    this.strings = new Array("");
+    this.append(value);
+}
+
+// Appends the given value to the end of this instance.
+StringBuilder.prototype.append = function (value)
+{
+    if (value)
+    {
+        this.strings.push(value);
+    }
+}
+
+// Clears the string buffer
+StringBuilder.prototype.clear = function ()
+{
+    this.strings.length = 1;
+}
+
+// Converts this instance to a String.
+StringBuilder.prototype.toString = function ()
+{
+    return this.strings.join("");
+}
+
+</cixar.com></scott.trenda.net></stevenlevithan.com></body></html> -->
