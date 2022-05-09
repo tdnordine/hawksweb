@@ -28,6 +28,7 @@ import { NewsService } from './services/news.service';
 import { ScheduleService } from './services/schedule.service';
 import { RosterService } from './services/roster.service';
 import { SortPipe } from './utilities/sort.pipe';
+import { DateSortPipe } from './utilities/datesort.pipe';
 import { LiveComponent } from './live/live.component';
 import { BoardmemberComponent } from './boardmember/boardmember.component';
 import { ConstructionComponent } from './construction/construction.component';
@@ -53,6 +54,7 @@ import { IscoreScoreboardComponent } from './iscore-scoreboard/iscore-scoreboard
     NewsreelComponent,
     HomeComponent,
     SortPipe,
+    DateSortPipe,
     LiveComponent,
     BoardmemberComponent,
     ConstructionComponent,

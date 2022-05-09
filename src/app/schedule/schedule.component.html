@@ -11,6 +11,19 @@
     </div>
     <div class="main">
       <div class="content-center">
+<!--        <div class="container">
+          <h2 class="text-center">{{CurrentYear}} Playoffs</h2>
+          <div class="container">
+            <h3 class="text-center">Playoff Admission</h3>
+            <p>Admission to all playoff games are $5 for Adults, $2 for Students, and children 12 and under are free. Admission will be collected at the entrance to the park.</p>
+          </div>
+          <div><br></div>
+          <div class="container">
+            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQnA9q0cDiir7euu-H6h2vBy36R8n3W_1zuZd8EIcB0UBD2fMeEJ5HujqZCnk3oxA/pubhtml?gid=311039150&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+            <div><br></div>
+            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSDuNNNMa0qGuJqPhJCc2FTOsEgwEnLXq61t28WIJaaFTzhOWekKN1CYul178OO-g/pubhtml?gid=89965287&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+          </div>
+        </div> -->
           <div class="container">
             <h2 class="text-center">Tickets</h2>
             <p>Tickets are $3 at the park, available at concessions 45 min prior to the game start or you can pay when one of our team members walks through to collect.</p>
@@ -25,7 +38,7 @@
                 <div class="col-3"><h4>Location</h4></div>
                 <div class="col-3"><h4>Opponent</h4></div>
             </div>
-            <div *ngFor="let game of games" class="row game_row" >
+            <div *ngFor="let game of games.slice().reverse()" class="row game_row" >
                 <div class="col-4"><span class="text-primary">{{game.Date | date : 'EEE, MMM d, h:mm a'}}</span></div>
                 <div class="col-3"><span class="text-primary">{{game.Location}}</span></div>
                 <div class="col-3"><span class="text-primary">{{game.Opponent}}</span></div>
@@ -34,8 +47,6 @@
           <div class="container">
               <h2 class="title-uppercase text-center">{{CurrentYear}} Game Schedule</h2>
               <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=bmQxc2J2ZnIzbm9jZjBnNmpmMGw2ZjIyNGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%230B8043&amp;title=Hastings%20Hawks&amp;showTitle=0&amp;mode=WEEK" style="border-width:0" class="fit" frameborder="0" scrolling="no"></iframe>
-              <div *ngFor="let game of games" >
-              </div>
           </div> 
       </div>
     </div>
