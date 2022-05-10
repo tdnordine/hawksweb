@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { getLocaleDayNames } from '@angular/common';
 
 export interface IScheduledGame {
   Description: string;
